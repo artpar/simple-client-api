@@ -1,4 +1,4 @@
-language: ruby
+language: go
 
 services:
 - docker
@@ -7,4 +7,8 @@ before_install:
 - docker build -t artpar/engel .
 
 script:
-- docker push artpar/engel
+- if [ "$TRAVIS_BRANCH" == "master" ]; then
+  docker build -t artpar/engel .;
+  docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
+  docker push artpar/engel;
+  fi
