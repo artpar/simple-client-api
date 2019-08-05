@@ -1,0 +1,143 @@
+Tables:
+- TableName: client
+  Columns:
+  - ColumnName: first_name
+    Name: first_name
+    ColumnType: label
+    DataType: varchar(100)
+  - ColumnName: last_name
+    Name: last_name
+    ColumnType: label
+    DataType: varchar(100)
+  - ColumnName: telephone
+    Name: telephone
+    ColumnType: label
+    DataType: varchar(100)
+  - ColumnName: email
+    Name: email
+    ColumnType: label
+    DataType: varchar(100)
+  - ColumnName: street
+    Name: street
+    ColumnType: label
+    DataType: varchar(100)
+  - ColumnName: postal_code
+    Name: postal_code
+    ColumnType: label
+    DataType: varchar(100)
+  - ColumnName: city
+    Name: city
+    ColumnType: label
+    DataType: varchar(100)
+  - ColumnName: country
+    Name: country
+    ColumnType: label
+    DataType: varchar(100)
+  - ColumnName: active
+    ColumnType: truefalse
+    DataType: int(1)
+    Name: active
+  Validations:
+  - ColumnName: email
+    Tags: email
+  - ColumnName: first_name
+    Tags: required
+Streams:
+- StreamName: active_client
+  RootEntityName: client
+  Columns:
+  - ColumnName: first_name
+    Name: first_name
+    ColumnType: label
+  - ColumnName: last_name
+    Name: last_name
+    ColumnType: label
+  - ColumnName: telephone
+    Name: telephone
+    ColumnType: label
+  - ColumnName: email
+    Name: email
+    ColumnType: label
+  - ColumnName: street
+    Name: street
+    ColumnType: label
+  - ColumnName: postal_code
+    Name: postal_code
+    ColumnType: label
+  - ColumnName: city
+    Name: city
+    ColumnType: label
+  - ColumnName: country
+    Name: country
+    ColumnType: label
+  - ColumnName: active
+    Name: active
+    ColumnType: truefalse
+  Transformations:
+  - Operation: select
+    Attributes:
+      Columns:
+      - first_name
+      - last_name
+      - telephone
+      - email
+      - street
+      - city
+      - postal_code
+      - country
+      - active
+      - reference_id
+  - Operation: filter
+    Attributes:
+      ColumnName: active
+      Comparator: ==
+      Value: "1"
+- StreamName: inactive_client
+  RootEntityName: client
+  Columns:
+  - ColumnName: first_name
+    Name: first_name
+    ColumnType: label
+  - ColumnName: last_name
+    Name: last_name
+    ColumnType: label
+  - ColumnName: telephone
+    Name: telephone
+    ColumnType: label
+  - ColumnName: email
+    Name: email
+    ColumnType: label
+  - ColumnName: street
+    Name: street
+    ColumnType: label
+  - ColumnName: postal_code
+    Name: postal_code
+    ColumnType: label
+  - ColumnName: city
+    Name: city
+    ColumnType: label
+  - ColumnName: country
+    Name: country
+    ColumnType: label
+  - ColumnName: active
+    Name: active
+    ColumnType: truefalse
+  Transformations:
+  - Operation: select
+    Attributes:
+      Columns:
+      - first_name
+      - last_name
+      - telephone
+      - email
+      - street
+      - city
+      - postal_code
+      - country
+      - active
+      - reference_id
+  - Operation: filter
+    Attributes:
+      ColumnName: active
+      Comparator: ==
+      Value: "0"
