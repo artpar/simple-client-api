@@ -9,4 +9,6 @@ before_install:
 script:
 - if [ "$TRAVIS_BRANCH" == "master" ]; then
   docker build -t artpar/engel .;
+  docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
+  docker push artpar/engel;
   fi
